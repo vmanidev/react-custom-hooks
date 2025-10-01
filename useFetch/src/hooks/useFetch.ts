@@ -6,10 +6,9 @@ export default function useFetch(url: string) {
 
     const [data, setData] = useState(null);
     const [error, setError] = useState<ErrorPayload>(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setLoading(true);
         fetch(url)
             .then(async (response) => {
                 if (!response.ok) {
