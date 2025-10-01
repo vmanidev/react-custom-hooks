@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
 import type { ErrorPayload } from "../types/fetch";
 
-
-export default function useFetch(url: string) {
-
-    const [data, setData] = useState(null);
+export default function useFetch<T = any>(url: string) {
+    const [data, setData] = useState<T | null>(null);
     const [error, setError] = useState<ErrorPayload>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(url)
-            .then(async (response) => {
+        setLoading(true);
+        const fetchData = async () => {
+            try {
+                setError(null);
+
+                const response = await fetch(url);
+
                 if (!response.ok) {
-                    setError({ message: "Network error." });
+                    setError({ message: "Network Error." });
+                    return;
                 }
-                setData((await response.json()))
-            })
-            .catch(() => {
+
+                const jsonData = await response.json();
+                setData(jsonData);
+            } catch (error) {
                 setData(null);
                 setError({ message: "Failed to fetch data." });
-            })
-            .finally(() => setLoading(false));
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
     }, [url]);
 
     return { data, error, loading };
