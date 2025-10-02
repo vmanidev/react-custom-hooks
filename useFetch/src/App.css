@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+ol {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 24px;
+}
+
+li > div:first-child {
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+#loading,
+#error {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 24px;
+}
+
+#error {
+  color: red;
+}
