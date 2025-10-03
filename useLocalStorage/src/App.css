@@ -6,10 +6,11 @@ body {
   font-family: sans-serif;
 }
 
-form {
+form,
+#result {
   padding: 16px;
   margin: 16px auto;
-  max-width: 500px;
+  width: 90%;
   display: grid;
   gap: 16px;
   align-items: center;
@@ -56,6 +57,10 @@ input {
 
 #save-btn:hover {
   background: #32429c;
+}
+
+#result {
+  display: block;
 }
 
 #result > span {
