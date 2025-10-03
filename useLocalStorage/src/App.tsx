@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -13,15 +14,29 @@ export default function App() {
     },
   });
 
+  const storage = useLocalStorage("userData");
+
   const onChangeHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => {
+      if (["doorNo", "street", "city"].includes(name)) {
+        return { ...prev, address: { ...prev.address, [name]: value } };
+      }
+      return { ...prev, [name]: value };
+    });
   };
-  const saveFormData = () => {};
+  const saveFormData = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    storage.setItem(formData);
+  };
 
   const getUserForm = () => {
     return (
-      <form>
+      <form
+        onSubmit={(event: React.FormEvent<HTMLFormElement>) =>
+          saveFormData(event)
+        }
+      >
         <div>
           <label htmlFor="name">Name</label>
           <input
@@ -43,7 +58,9 @@ export default function App() {
             pattern="[0-9]{10}"
             maxLength={10}
             value={formData.phone}
-            onChange={(event) => onChangeHandle(event)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              onChangeHandle(event)
+            }
           />
         </div>
         <div>
@@ -53,7 +70,9 @@ export default function App() {
             name="email"
             type="email"
             value={formData.email}
-            onChange={(event) => onChangeHandle(event)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              onChangeHandle(event)
+            }
           />
         </div>
         <div id="address-container">
@@ -65,7 +84,9 @@ export default function App() {
               name="doorNo"
               type="text"
               value={formData.address.doorNo}
-              onChange={(event) => onChangeHandle(event)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                onChangeHandle(event)
+              }
             />
           </div>
           <div>
@@ -75,7 +96,9 @@ export default function App() {
               name="street"
               type="text"
               value={formData.address.street}
-              onChange={(event) => onChangeHandle(event)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                onChangeHandle(event)
+              }
             />
           </div>
           <div>
@@ -85,22 +108,27 @@ export default function App() {
               name="city"
               type="text"
               value={formData.address.city}
-              onChange={(event) => onChangeHandle(event)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                onChangeHandle(event)
+              }
             />
           </div>
         </div>
         <div>
-          <input
-            id="save-btn"
-            type="submit"
-            value="Save to localStorage"
-            onSubmit={saveFormData}
-            onChange={(event) => onChangeHandle(event)}
-          />
+          <input id="save-btn" type="submit" value="Save to localStorage" />
         </div>
       </form>
     );
   };
 
-  return <div>{getUserForm()}</div>;
+  return (
+    <div>
+      {getUserForm()}
+      <div id="result">
+        <span>localStorage: (key:userData)</span>
+        <button onClick={() => storage.removeItem()}>removeItem</button>
+        <pre>{JSON.stringify(storage.getItem())}</pre>
+      </div>
+    </div>
+  );
 }
