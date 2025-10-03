@@ -48,18 +48,46 @@ input {
 }
 
 #save-btn {
-  height: fit-content;
-  width: fit-content;
   padding: 10px;
-  margin: auto;
   background: #3f51b5;
-  border: none;
   border-radius: 10px;
   color: #fff;
-  font-size: 16px;
-  cursor: pointer;
 }
 
 #save-btn:hover {
   background: #32429c;
+}
+
+#result > span {
+  font-weight: bold;
+}
+
+#result button {
+  background: #e91e63;
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#result button:hover {
+  background: #b1164b;
+}
+
+pre {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  line-height: 24px;
+}
+
+button,
+input[type="submit"] {
+  height: fit-content;
+  width: fit-content;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: #fff;
+  outline: none;
+  margin: auto;
+  font-size: 16px;
 }
