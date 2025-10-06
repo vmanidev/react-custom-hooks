@@ -5,3 +5,22 @@
   margin: 24px auto;
   font-family: sans-serif;
 }
+
+input {
+  height: 24px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-size: 16px;
+}
+
+#live-text-display {
+  margin: 24px;
+  color: blue;
+  font-size: 24px;
+  line-height: 48px;
+  letter-spacing: 6px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  text-wrap: auto;
+}
