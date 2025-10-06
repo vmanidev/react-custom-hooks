@@ -1,0 +1,7 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 24px auto;
+  font-family: sans-serif;
+}
