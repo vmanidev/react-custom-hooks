@@ -18,7 +18,7 @@ export default function App() {
         }
       />
       <pre id="live-text-display">{text}</pre>
-      {text.length > 0 && <p>Note: Text will appear 1 seconds after input.</p>}
+      {text.length > 0 && <p>Note: Text will appear 1 second after input.</p>}
     </div>
   );
 }
