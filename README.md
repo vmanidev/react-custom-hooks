@@ -17,7 +17,12 @@ It is designed to keep React components clean, maintainable, and free from repet
 * **useLocalStorage** – A custom hook that links a state variable to `localStorage`.
 
   It keeps your data persistent across sessions and reloads, **eliminating the need to manually handle storage and retrieval**.
+
   
+* **useDebounce** – A custom hook for delaying updates to rapidly changing values.
+
+  It helps control how often expensive operations (like API calls or re-renders) run by waiting until input or state changes have settled, improving performance and user experience.  
+
 ---
 
 ## Installation
