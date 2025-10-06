@@ -17,6 +17,16 @@ Designed for simple and reusable integration in React apps.
 
 ---
 
+## Demo Screenshots/Recordings
+
+
+
+https://github.com/user-attachments/assets/bc917d24-bb2c-4255-ac55-be775a58d8c9
+
+
+
+---
+
 ## Parameters
 
 | Parameter | Type     | Description                                                |
